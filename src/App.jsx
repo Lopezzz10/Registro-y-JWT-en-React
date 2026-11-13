@@ -10,6 +10,7 @@ import {
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
+import Registrar from "./pages/Registrar";
 import Perfil from "./pages/Perfil";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/registrar" element={<Registrar />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/perfil" element={<Perfil />} />
