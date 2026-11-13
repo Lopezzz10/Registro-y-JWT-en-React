@@ -1,16 +1,80 @@
-# React + Vite
+# Registro y JWT en React
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplicación web en React que consume un backend en Spring Boot con autenticación JWT. Permite registrar usuarios, iniciar sesión y consultar el perfil del usuario autenticado.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Registro de usuarios con nombre de usuario, contraseña y rol (USER o ADMIN).
+- Inicio de sesión con almacenamiento del token JWT.
+- Ruta protegida de perfil, accesible solo con token válido.
+- Cierre de sesión con invalidación del token en el servidor.
+- Diseño responsive con tema oscuro y estilo futurista.
 
-## React Compiler
+## Tecnologías
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- React Router DOM 7
+- Vite
+- Backend: Spring Boot, Spring Security y JWT
 
-## Expanding the Oxlint configuration
+## Estructura del proyecto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```
+mi-proyecto-jwt/
+├── src/
+│   ├── components/
+│   │   └── ProtectedRoute.jsx
+│   ├── config/
+│   │   └── apiConfig.js
+│   ├── context/
+│   │   └── AuthContext.jsx
+│   ├── pages/
+│   │   ├── Login.jsx
+│   │   ├── Registrar.jsx
+│   │   └── Perfil.jsx
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+└── package.json
+```
+
+## Rutas de la aplicación
+
+| Ruta         | Acceso    | Descripción                  |
+|--------------|-----------|------------------------------|
+| `/login`     | Pública   | Inicio de sesión             |
+| `/registrar` | Pública   | Registro de nuevos usuarios  |
+| `/perfil`    | Protegida | Datos del usuario autenticado |
+
+## Endpoints del backend
+
+| Método | Endpoint          | Descripción                      |
+|--------|-------------------|----------------------------------|
+| POST   | `/auth/registrar` | Crea un nuevo usuario (201)      |
+| POST   | `/auth/login`     | Devuelve el token JWT            |
+| GET    | `/auth/perfil`    | Devuelve los datos del usuario   |
+| POST   | `/auth/logout`    | Invalida el token                |
+
+## Requisitos
+
+- Node.js 18 o superior
+- Backend Spring Boot en ejecución en `http://localhost:8080`
+
+## Instalación y ejecución
+
+```bash
+npm install
+npm run dev
+```
+
+La aplicación se abre en `http://localhost:5173`.
+
+## Configuración
+
+La URL del backend se define en `src/config/apiConfig.js`:
+
+```js
+export const API_BASE_URL = 'http://localhost:8080'
+```
+
+El backend debe permitir CORS para el origen `http://localhost:5173`.
