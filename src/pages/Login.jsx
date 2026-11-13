@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { API_BASE_URL } from "../config/apiConfig";
 
@@ -69,6 +68,9 @@ function Login() {
 
                 <button type="submit">Ingresar</button>
             </form>
+            <p>
+                ¿No tienes cuenta? <Link to="/registrar">Regístrate aquí</Link>
+            </p>
         </div>
     );
 }
