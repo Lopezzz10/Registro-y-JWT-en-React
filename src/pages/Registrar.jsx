@@ -48,47 +48,56 @@ function Registrar() {
     };
 
     return (
-        <div>
-            <h1>Registrar Usuario</h1>
+        <div className="auth-page">
+            <div className="auth-card">
+                <h1>Crear Cuenta</h1>
+                <p className="auth-sub">Regístrate para acceder al sistema</p>
 
-            <form onSubmit={manejarSubmit}>
-                <div>
-                    <label>Usuario:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
+                <form onSubmit={manejarSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="username">Usuario</label>
+                        <input
+                            id="username"
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <div>
-                    <label>Contraseña:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <div>
-                    <label>Rol:</label>
-                    <select value={rol} onChange={(e) => setRol(e.target.value)}>
-                        <option value="USER">USER</option>
-                        <option value="ADMIN">ADMIN</option>
-                    </select>
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="rol">Rol</label>
+                        <select
+                            id="rol"
+                            value={rol}
+                            onChange={(e) => setRol(e.target.value)}
+                        >
+                            <option value="USER">USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                        </select>
+                    </div>
 
-                {err && <p style={{ color: 'red' }}>{err}</p>}
-                {exito && <p style={{ color: 'green' }}>{exito}</p>}
+                    {err && <p className="msg msg-error">{err}</p>}
+                    {exito && <p className="msg msg-exito">{exito}</p>}
 
-                <button type="submit">Registrar</button>
-            </form>
+                    <button type="submit" className="btn">Registrar</button>
+                </form>
 
-            <p>
-                ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
-            </p>
+                <p className="auth-link">
+                    ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+                </p>
+            </div>
         </div>
     );
 }

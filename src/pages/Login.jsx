@@ -40,37 +40,43 @@ function Login() {
     };
 
     return (
-        <div>
-            <h1>Iniciar Sesion</h1>
+        <div className="auth-page">
+            <div className="auth-card">
+                <h1>Iniciar Sesion</h1>
+                <p className="auth-sub">Ingresa tus credenciales</p>
 
-            <form onSubmit={manejarSubmit}>
-                <div>
-                    <label>Usuario:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
+                <form onSubmit={manejarSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="username">Usuario</label>
+                        <input
+                            id="username"
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <div>
-                    <label>Contraseña:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                {err && <p>{err}</p>}
+                    {err && <p className="msg msg-error">{err}</p>}
 
-                <button type="submit">Ingresar</button>
-            </form>
-            <p>
-                ¿No tienes cuenta? <Link to="/registrar">Regístrate aquí</Link>
-            </p>
+                    <button type="submit" className="btn">Ingresar</button>
+                </form>
+
+                <p className="auth-link">
+                    ¿No tienes cuenta? <Link to="/registrar">Regístrate aquí</Link>
+                </p>
+            </div>
         </div>
     );
 }
