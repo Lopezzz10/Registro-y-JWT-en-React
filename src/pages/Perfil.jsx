@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -53,22 +52,36 @@ function Perfil() {
     };
 
     return (
-        <div>
-            <div>
-                <h2>Perfil de Usuario</h2>
-                <button onClick={manejarLogOut}>Cerrar Sesion</button>
-            </div>
-
-            {error && <p>{error}</p>}
-
-            {datosPerfil && (
-                <div>
-                    <p>{datosPerfil.Mensaje}</p>
-                    <p>{datosPerfil.Usuario}</p>
-                    <p>{datosPerfil.rol_detectado}</p>
-                    <p>{datosPerfil.status}</p>
+        <div className="auth-page">
+            <div className="auth-card perfil-card">
+                <div className="perfil-header">
+                    <h2>Perfil de Usuario</h2>
+                    <button className="btn btn-salir" onClick={manejarLogOut}>Cerrar Sesion</button>
                 </div>
-            )}
+
+                {error && <p className="msg msg-error">{error}</p>}
+
+                {datosPerfil && (
+                    <div>
+                        <p className="msg msg-exito">{datosPerfil.Mensaje}</p>
+
+                        <div className="perfil-dato">
+                            <span>Usuario</span>
+                            <strong>{datosPerfil.Usuario}</strong>
+                        </div>
+
+                        <div className="perfil-dato">
+                            <span>Rol</span>
+                            <strong className="badge">{datosPerfil.rol_detectado}</strong>
+                        </div>
+
+                        <div className="perfil-dato">
+                            <span>Estado</span>
+                            <strong>{datosPerfil.status}</strong>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
